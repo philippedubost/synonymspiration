@@ -1,0 +1,144 @@
+<!doctype html>
+<html>
+<head>
+<title>wordflow</title>
+<!-- Angular JS and jQuery -->
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+<!-- Fonts and Style -->
+<link href='http://fonts.googleapis.com/css?family=Signika' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="style.css">
+<meta charset="utf-8"> 
+</head>
+<body>
+
+<div ng-app="" ng-controller="synonymsController" class="container-fluid"> 
+
+	<div id="palette">
+		<div class="word">
+			<input autofocus placeholder="Type a word here" type='text' ng-model='rootWord' ng-change="reloadSynonyms()"/>
+			<button ng-click="addWord(rootWord)">+</button>
+		</div>
+
+		<p>				 
+			<span ng-repeat="noun in nouns" class="synonyms">
+				<button ng-click="changeWord(noun)">{{ noun }}</button> 
+				<button ng-click="addWord(noun)" class="add" >+</button>
+			</span>
+		</p>
+				  
+		<p>
+			<span ng-repeat="ant in antonyms" class="antonyms">
+				<button ng-click="changeWord(ant)">{{ ant }}</button> 
+				<button ng-click="addWord(ant)" class="add" >+</button>
+			</span>
+		</p>
+			
+		<p>
+			<span ng-repeat="verb in verbs" class="actions">
+				<button ng-click="changeWord(verb)">{{ verb }}</button> 
+				<button ng-click="addWord(verb)" class="add" >+</button>
+			</span>
+		</p>
+	</div>
+	
+	<div id="records">
+		<div id="recordsMenu">
+			<a href="?flow={{ currentFlow }}"><img id="flowLogo" src="assets/images/flow.svg"/></a>
+		</div>
+		
+		<div id="recordsWords">				
+			<span ng-repeat="word in words track by $index" class="record">
+				<button ng-click="changeWordFromRecord(word)">{{ word }}</button> 
+				<button ng-click="deleteWord($index)" class="delete" >x</button>
+				<script>
+					
+					
+					if($scope.rootWord != word){
+						document.write('&nbsp;>&nbsp; ');
+					}
+				</script>				
+			</span>
+		</div>
+	</div>
+
+	<div id="footer">
+	
+		Made with love by philippedubost,<br />
+		based on <a href="http://www.w3schools.com/angular/AngularJS" target="_blank">AngularJS</a> and <a href="http://words.bighugelabs.com/api.php" target="_blank">Thesaurus API</a>,<br />
+		icons by <a href="http://www.thenounproject.com" target="_blank">thenounproject.com</a>.
+	</div>
+
+</div>
+
+
+<script>
+//Function to obtain info passed through URL (ex: ?flow=apple,fruit,banana)
+function get(name){
+   if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+      return decodeURIComponent(name[1]);
+}
+
+function synonymsController($scope,$http) {
+	//$scope.rootWord = "action";
+	$scope.rootWord = get("currentWord");
+	
+	//test if a 'flow' has been specified in the URL
+	flow = get("flow");
+	if(typeof flow == 'undefined') {
+		$scope.words = [];
+	}else{
+		$scope.currentFlow = flow;
+		$scope.words = flow.split(",");
+	}
+	
+	$scope.changeWord = function(word) {		
+		$scope.rootWord = word;
+		$scope.reloadSynonyms();
+		$scope.addWord(word);
+      };
+	  
+	$scope.addWord = function(word) {
+		$scope.words.push(word);
+		$scope.currentFlow = $scope.words.toString();
+      };
+	  
+	$scope.deleteWord = function(index) {
+		console.log('Delete number '+index);
+		$scope.words.splice(index, 1);
+		$scope.currentFlow = $scope.words.toString();
+      };
+	  
+	$scope.changeWordFromRecord = function(word) {
+		if($scope.rootWord != word){
+			$scope.rootWord = word;
+			$scope.reloadSynonyms();
+			}
+	  };
+	  
+	$scope.reloadSynonyms = function() {
+			
+			//$scope.words[$scope.words.length-1] = $scope.rootWord;
+			
+			$scope.nouns = [];
+			$scope.antonyms = [];
+			$scope.verbs = [];	
+			
+		$http.get("http://words.bighugelabs.com/api/2/cba6ef9a53519fb1c16c0e493722f906/"+$scope.rootWord+"/json")
+		.success(function(response) {
+			$scope.result = response;			
+						
+						
+			if($scope.result.noun.syn != undefined) $scope.nouns = $scope.result.noun.syn;
+			if($scope.result.noun.ant != undefined) $scope.antonyms = $scope.result.noun.ant;
+			if($scope.result.verb.syn != undefined) $scope.verbs = $scope.result.verb.syn;
+			});
+      };
+	
+	
+}
+</script>
+
+</body>
+</html>

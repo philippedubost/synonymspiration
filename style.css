@@ -1,8 +1,21 @@
 body {
     background-color: #d0e4fe;
 	font-family: 'Signika', sans-serif;
+	height: 100%;
 }
 
+::-webkit-scrollbar {  
+    width: 26px;  
+}  
+::-webkit-scrollbar-track {  
+    background-color: #e0edfe;  
+}  
+::-webkit-scrollbar-thumb {  
+    background-color: #80b4fb;  
+}  
+::-webkit-scrollbar-thumb:hover {  
+    background-color: #9fc5fd;  
+} 
 
 
 h1 {
@@ -34,6 +47,7 @@ input:focus {
 
 /*Synonyms style*/
 span.synonyms button{
+	padding-right: 25px;
 	border-color: #b7f975;
 	background-color: #c5fa8f;
     color: #004400;
@@ -43,6 +57,7 @@ span.synonyms button{
 span.synonyms button.hover,
 span.synonyms button:hover
 {
+	padding-right: 25px;
 	border-color: #d3fcab;
 	background-color: #dcfedc;
     color: #001c00;
@@ -52,6 +67,7 @@ span.synonyms button:hover
 span.synonyms button.active,
 span.synonyms button:active
 {
+	padding-right: 25px;
 	border-color: #d0e4fe; /*body background color*/
 	background-color: #70d60a;
     color: #001c00;
@@ -60,6 +76,7 @@ span.synonyms button:active
 
 /*Antonyms style*/
 span.antonyms button{
+	padding-right: 25px;
 	border-color: #ff3131;
 	background-color: #ff5555;
     color: #6f0000;
@@ -69,8 +86,9 @@ span.antonyms button{
 span.antonyms button.hover,
 span.antonyms button:hover
 {
+	padding-right: 25px;
 	border-color: #ff5555;
-	background-color: #dcfedc;
+	background-color: #ff7979;
     color: #001c00;
 	box-shadow: 2px 2px 2px #78b0fc;
 }
@@ -78,6 +96,7 @@ span.antonyms button:hover
 span.antonyms button.active,
 span.antonyms button:active
 {
+	padding-right: 25px;
 	border-color: #d0e4fe; /*body background color*/
 	background-color: #d70000;
     color: #2b0000;
@@ -86,6 +105,7 @@ span.antonyms button:active
 
 /*Actions style*/
 span.actions button{
+	padding-right: 25px;
 	border-color: #bd5eaa;
 	background-color: #cb7ebc;
 	color: #481e40;
@@ -95,8 +115,9 @@ span.actions button{
 span.actions button.hover,
 span.actions button:hover
 {
+	padding-right: 25px;
 	border-color: #cb7ebc;
-	background-color: #dcfedc;
+	background-color: #d79bcb;
     color: #001c00;
 	box-shadow: 2px 2px 2px #78b0fc;
 }
@@ -104,6 +125,7 @@ span.actions button:hover
 span.actions button.active,
 span.actions button:active
 {
+	padding-right: 25px;
 	border-color: #d0e4fe; /*body background color*/
 	background-color: #7d336f;
 	color: #220f1e;
@@ -116,6 +138,7 @@ span.record{
 	}
 	
 span.record button{
+	padding-right: 25px;
 	border-color: #3187fb;
 	background-color: #4a96fb;
 	color: #033881;
@@ -125,21 +148,62 @@ span.record button{
 span.record button.hover,
 span.record button:hover
 {
+	padding-right: 25px;
 	border-color: #3187fb;
 	background-color: #accefd;
 	color: #0567eb;
 	box-shadow: 2px 2px 2px #78b0fc;
 }
 
-span.record button.active,
-span.record button:active
-{
-	border-color: #d0e4fe; /*body background color*/
-	background-color: #4a96fb;
-	color: #033881;
-	box-shadow: 0px 0px 0px #78b0fc;
+/*Delete style*/
+.delete{
+	padding-right: 8px !important;
+	margin-left: -28px;
+	background-color: #7eb4fc !important;
+	color: #1160ca !important;
 }
 
+.delete:hover{
+	padding-right: 8px !important;
+	margin-left: -28px;
+	border-color: #db0000 !important;
+	background-color: #ff6f6f !important;
+	color: #ffffff !important;
+	box-shadow: 1px 1px 1px #d00000 !important;
+}
+.delete:active{
+	padding-right: 8px !important;
+	margin-left: -28px;
+	border-color: #d0e4fe !important;
+	background-color: #990000 !important;
+	color: #ed7069 !important;
+	box-shadow: 1px 1px 1px #d0e4fe !important;
+}
+
+/*Add style*/
+.add{
+	padding-right: 8px !important;
+	margin-left: -28px;
+	font-size: 22px;
+	border-size: 2px;
+}
+
+/*.add:hover{
+	padding-right: 8px !important;
+	margin-left: -28px;
+	border-color: #db0000 !important;
+	background-color: #ff6f6f !important;
+	color: #ffffff !important;
+	box-shadow: 1px 1px 1px #d00000 !important;
+}
+.add:active{
+	padding-right: 8px !important;
+	margin-left: -28px;
+	border-color: #d0e4fe !important;
+	background-color: #990000 !important;
+	color: #ed7069 !important;
+	box-shadow: 1px 1px 1px #d0e4fe !important;
+}*/
 
 .word input {
 	margin: 10px;
@@ -178,8 +242,40 @@ span.record button:active
 	outline: 0 none;
 }
 
+.word button {
+	margin: 10px;
+    font-family: 'Signika', sans-serif;
+    font-size: 34px;
+	border-radius: 10px;
+	
+	border: solid 1px #dedede;
+	padding: 11px 25px;  
+
+	border-color: #b7f975;
+	background-color: #c5fa8f;
+    color: #004400;
+	box-shadow: 2px 2px 2px #a6cbfd;	
+}
+
+.word button:hover
+{
+	border-color: #d3fcab;
+	background-color: #dcfedc;
+    color: #001c00;
+	box-shadow: 2px 2px 2px #78b0fc;
+}
+
+.word button.active,
+.word button:active
+{
+	border-color: #d0e4fe; /*body background color*/
+	background-color: #70d60a;
+    color: #001c00;
+	box-shadow: 0px 0px 0px #78b0fc;
+}
+
 .word{
-	text-align: left;
+	text-align: center;
 	width: 100%;
 }
 
@@ -187,20 +283,38 @@ span.record button:active
 	padding: 2%;
 	border-radius: 25px;
 	border: 4px solid #deecfe;
-	width: 94%;
 	text-align: center;
+	margin-bottom: 15px;
+    overflow: auto;
 }
 
-#record {
-	background: url('assets/images/flow.svg') 30px 22px no-repeat;	
-	background-size: 65px;
+#records {
+	/*background: url('') 30px 22px no-repeat;	
+	background-size: 65px;*/
 	padding: 2%;
-	padding-left: 120px;
 	border-radius: 25px;
 	border: 4px solid #deecfe;
-	width: 90%;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+#recordsMenu {
 	text-align: center;
-	margin-bottom:15px;
+	width: 10%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#recordsWords{
+	text-align: left;
+	width: 88%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#flowLogo {
+	width: 65px;
+	height: 65px;
 }
 
 #footer {
@@ -208,6 +322,7 @@ span.record button:active
 	text-align: center;
     color: #95c1fd;
 	font-size: 14px;
+	height:5%;
 }
 
 a:link{
