@@ -1,5 +1,6 @@
 # Synonymspiration
 An intelligent connected words tool to stimulate your brainstorms.
+It is currently running here: http://synonymspiration.com/
 
 # What is it ?
 This tool helps you to surf on the meaningful abstraction that are words. 
