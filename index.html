@@ -15,12 +15,17 @@
 
 <div ng-app="" ng-controller="synonymsController" class="container-fluid"> 
 
-	<div id="palette">
 		<div class="word">
 			<input autofocus placeholder="Type a word here" type='text' ng-model='rootWord' ng-change="reloadSynonyms()"/>
 			<button ng-click="addWord(rootWord)">+</button>
 		</div>
-
+		
+	<div id="palette">
+		<div id="recordsMenu">
+			<a href="?flow={{ currentFlow }}"><img id="flowLogo" src="assets/images/palette.svg"/></a>
+		</div>
+		
+		<div id="recordsWords">	
 		<p>				 
 			<span ng-repeat="noun in nouns" class="synonyms">
 				<button ng-click="changeWord(noun)">{{ noun }}</button> 
@@ -41,11 +46,12 @@
 				<button ng-click="addWord(verb)" class="add" >+</button>
 			</span>
 		</p>
+		</div>
 	</div>
 	
 	<div id="records">
 		<div id="recordsMenu">
-			<a href="?flow={{ currentFlow }}"><img id="flowLogo" src="assets/images/flow.svg"/></a>
+			<a href="?flow={{ currentFlow }}"><img id="flowLogo" src="assets/images/line.svg"/></a>
 		</div>
 		
 		<div id="recordsWords">				
