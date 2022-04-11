@@ -1,6 +1,6 @@
 # Synonymspiration
 An intelligent connected words tool to stimulate your brainstorms.
-It is currently running here: http://synonymspiration.com/
+It is currently running here: https://philippedubost.com/syno/
 
 # What is it ?
 This tool helps you to surf on the meaningful abstraction that are words. 
